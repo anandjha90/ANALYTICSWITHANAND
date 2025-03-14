@@ -154,3 +154,14 @@ alter table if exists CREDIT_CARD_CUSTOMER modify column PAN unset masking polic
 -- -- drop masking policies
 drop masking policy MASK_CREDIT_CARDS;
 
+-- drop masking policies
+drop masking policy MASK_CREDIT_CARDS;
+
+-- Run from the developer mode and then give necessary access
+REVOKE ALL PRIVILEGES ON TABLE CREDIT_CARD_CUSTOMERS_DEVELOPER FROM TESTER;
+
+GRANT SELECT ON ALL TABLES IN SCHEMA DEMO_SCHEMA TO ROLE DESIGNER;
+GRANT SELECT ON ALL TABLES IN SCHEMA DEMO_SCHEMA TO ROLE ANALYST;
+GRANT SELECT ON ALL TABLES IN SCHEMA DEMO_SCHEMA TO ROLE TESTER;
+
+
