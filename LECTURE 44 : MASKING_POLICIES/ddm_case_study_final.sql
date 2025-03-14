@@ -160,8 +160,13 @@ drop masking policy MASK_CREDIT_CARDS;
 -- Run from the developer mode and then give necessary access
 REVOKE ALL PRIVILEGES ON TABLE CREDIT_CARD_CUSTOMERS_DEVELOPER FROM TESTER;
 
+-- this access can only be provided via ACCOUNTADMIN as SCHEMA level grants ON FUTURE TABLE in that SCHEMA cannot be given by any other role even that role creates a table in that particular schema
+GRANT SELECT ON FUTURE TABLES IN SCHEMA DEMO_SCHEMA TO ROLE DEVELOPER;
+GRANT SELECT ON FUTURE TABLES IN SCHEMA DEMO_SCHEMA TO ROLE DESIGNER;
+GRANT SELECT ON FUTURE TABLES IN SCHEMA DEMO_SCHEMA TO ROLE ANALYST;
+GRANT SELECT ON FUTURE TABLES IN SCHEMA DEMO_SCHEMA TO ROLE TESTER;
+
+-- -- this is not required if account admin has already given read access (FUTURE TABLE).If not given then any table which DEVELOPER role is creating he/she can give the necessary access to any other ROLE
 GRANT SELECT ON ALL TABLES IN SCHEMA DEMO_SCHEMA TO ROLE DESIGNER;
 GRANT SELECT ON ALL TABLES IN SCHEMA DEMO_SCHEMA TO ROLE ANALYST;
 GRANT SELECT ON ALL TABLES IN SCHEMA DEMO_SCHEMA TO ROLE TESTER;
-
-
