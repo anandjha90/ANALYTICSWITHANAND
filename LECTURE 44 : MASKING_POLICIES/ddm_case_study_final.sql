@@ -150,3 +150,7 @@ SELECT * FROM DEMO_DATABASE.DEMO_SCHEMA.CREDIT_CARD_CUSTOMERS;
 --How we can remove the masking policy--
 alter table if exists CREDIT_CARD_CUSTOMER modify column creditcard unset masking policy;
 alter table if exists CREDIT_CARD_CUSTOMER modify column PAN unset masking policy;
+
+-- -- drop masking policies
+drop masking policy MASK_CREDIT_CARDS;
+
